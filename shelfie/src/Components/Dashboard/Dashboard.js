@@ -4,12 +4,13 @@ import Product from '../Product/Product';
 class Dashboard extends Component{
 
 render(){
-const itemMap= this.props.itemArr.map((item, i) => (
+  const itemMap= this.props.itemArr.map((item, i) => (
     <Product
     key={i}
     item={item}/>
     ));
-
+    
+    
     return(
       <div>
         Dashboard
