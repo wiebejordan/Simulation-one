@@ -8,7 +8,9 @@ class Product extends Component{
   render(){
     return(
       <div>
-        Product
+        <img src={this.props.item.image}/>
+         <p>Name:{this.props.item.name}</p>
+         <p>Cost:{this.props.item.price}</p>
       </div>
     )
   }

@@ -3,17 +3,21 @@ import Product from '../Product/Product';
 
 class Dashboard extends Component{
 
+render(){
+const itemMap= this.props.itemArr.map((item, i) => (
+    <Product
+    key={i}
+    item={item}/>
+    ));
 
-
-
-  render(){
     return(
       <div>
-        DASHBOARD
-        <Product/>
+        Dashboard
+        {itemMap}
       </div>
     )
-  }
 }
+}
+
 
 export default Dashboard;
