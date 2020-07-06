@@ -7,8 +7,9 @@ class Form extends Component{
 
     this.state= {
       name: '',
-      price: 0,
+      price: '',
       image: '',
+      editView: true
     }
     this.baseState = this.state
   }
@@ -37,6 +38,10 @@ class Form extends Component{
     }
   }
 
+  handleToggle = () => {
+    this.setState({editView: !this.state.editView})
+  }
+
   render(){
     return(
       <div>
@@ -59,7 +64,11 @@ class Form extends Component{
         onChange={e => this.handleInput(e)}
         placeholder='Enter Product Price'/>
         <button onClick={this.handleCancel}>Cancel</button>
+        {this.state.editView
+        ? (
         <button onClick={this.addItem}>Add to Inventory</button>
+        )
+        : (<button>Save Changes</button>)}
       </div>
     )
   }

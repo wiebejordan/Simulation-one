@@ -29,11 +29,13 @@ class App extends Component {
     }
 
   render(){
+    
   return (
     <div className="App">
       <Header/>
       <Dashboard
-      itemArr={this.state.itemArr}/>
+      itemArr={this.state.itemArr}
+      getItems={this.getItems}/>
       <Form
       getItems={this.getItems}/>
     </div>
