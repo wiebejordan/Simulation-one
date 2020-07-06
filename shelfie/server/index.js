@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express'),
       massive = require('massive'),
       app = express(),
-      controller = require('../server/controller');
+      controller = require('./controller');
       
 const {SERVER_PORT, DB_URI} = process.env;
 
@@ -21,5 +21,6 @@ massive({
 
 
 app.get('/api/inventory', controller.getItems);
+app.post('/api/product', controller.addItem);
 
 app.listen(SERVER_PORT, () => console.log(`Server is crushing it on ${SERVER_PORT}`));
