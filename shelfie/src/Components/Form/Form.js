@@ -32,7 +32,7 @@ class Form extends Component{
   }
 
   editItem = () => {
-    axios.put(`/api/product/${this.state.selectedId}`,
+    axios.put(`/api/product/${this.props.selectedItem.product_id}`,
     {imageUrl: this.state.image, productName: this.state.name, price: this.state.price})
     .then(() => this.props.getItems())
     .catch(err => console.log(err))
@@ -46,13 +46,6 @@ class Form extends Component{
     this.setState(this.baseState)
   }
 
-  handleAdd = () => {
-    let itemInput = {
-      imageUrl: this.state.image,
-      name: this.state.name,
-      cost: this.state.price
-    }
-  }
 
   handleToggle = () => {
     this.setState({editView: !this.state.editView})
