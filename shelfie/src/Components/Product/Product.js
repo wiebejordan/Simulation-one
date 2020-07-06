@@ -19,7 +19,7 @@ class Product extends Component{
          <p>Name:{this.props.item.product_name}</p>
          <p>Cost:{this.props.item.price}</p>
          <button onClick={this.deleteItem}>Delete</button>
-         <button onClick={() => this.props.selectItem(this.props.item.product_id)}>Edit</button>
+         <button onClick={() => this.props.selectItem(this.props.item)}>Edit</button>
       </div>
     )
   }

@@ -11,7 +11,7 @@ class App extends Component {
       super(props);
       this.state = {
         itemArr: [],
-        selectedItem: {} 
+        selectedItem: {}
       }
       
     }
@@ -31,7 +31,7 @@ class App extends Component {
 
     selectItem = (item) => {
       this.setState({selectedItem: item})
-
+      console.log(this.state.selectedItem)
     }
   render(){
     

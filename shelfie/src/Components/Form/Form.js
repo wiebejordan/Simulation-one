@@ -7,7 +7,7 @@ class Form extends Component{
 
     this.state= {
       name: '',
-      price: '',
+      price: 0,
       image: '',
       editView: true,
       selectedId: this.props.selectedItem.product_id
@@ -15,10 +15,12 @@ class Form extends Component{
     this.baseState = this.state
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps, prevState){
     if(prevProps.selectedItem !== this.props.selectedItem){
       this.setState({editView: !this.state.editView})
-      this.setState({})
+      this.setState({name: this.props.selectedItem.product_name,
+      price: this.props.selectedItem.price,
+      image: this.props.selectedItem.image_url })
     }
 
   }
