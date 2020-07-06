@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Form extends Component{
   constructor(props){
@@ -12,16 +13,16 @@ class Form extends Component{
     this.baseState = this.state
   }
 
-  handleImageInput = (val) => {
-    this.setState({image: val})
+  addItem = () => {
+    axios.post('/api/product', {imageUrl: this.state.image, productName: this.state.name, price: this.state.price })
+      .then(() => this.props.getItems())
+      .then(() => this.handleCancel())
+      .catch(err => console.log(err))
+
   }
 
-  handleNameInput = (val) => {
-    this.setState({name: val})
-  }
-
-  handlePriceInput = (val) => {
-    this.setState({price: val})
+  handleInput = (e) => {
+    this.setState({[e.target.name]: e.target.value})
   }
 
   handleCancel = () => {
@@ -42,21 +43,23 @@ class Form extends Component{
         Form
         <img src={this.state.image} />
         <input
+         name='image'
          value={this.state.image}
-         onChange={e => this.handleImageInput(e.target.value)}
+         onChange={e => this.handleInput(e)}
          placeholder='Enter product image url'/>
         <input
+         name='name'
          value={this.state.name}
-         onChange={e => this.handleNameInput(e.target.value)}
+         onChange={e => this.handleInput(e)}
          placeholder='Enter Product Name'/>
 
         <input 
+        name='price'
         value={this.state.price}
-        onChange={e => this.handlePriceInput(e.target.value)}
+        onChange={e => this.handleInput(e)}
         placeholder='Enter Product Price'/>
-        <button
-        onClick={this.handleCancel}>Cancel</button>
-        <button>Add to Inventory</button>
+        <button onClick={this.handleCancel}>Cancel</button>
+        <button onClick={this.addItem}>Add to Inventory</button>
       </div>
     )
   }

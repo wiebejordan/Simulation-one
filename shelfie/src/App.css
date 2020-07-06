@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  
+}
+
+.product img{
+  height: 50px;
+  width: 50px;
 }
 
 .App-logo {
