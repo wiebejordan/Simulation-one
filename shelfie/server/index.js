@@ -23,5 +23,6 @@ massive({
 app.get('/api/inventory', controller.getItems);
 app.post('/api/product', controller.addItem);
 app.delete('/api/product/:id', controller.deleteItem);
+app.put('/api/product/:id', controller.editItem);
 
 app.listen(SERVER_PORT, () => console.log(`Server is crushing it on ${SERVER_PORT}`));

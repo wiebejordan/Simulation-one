@@ -10,7 +10,8 @@ class App extends Component {
     constructor(props){
       super(props);
       this.state = {
-        itemArr: []
+        itemArr: [],
+        selectedItem: {} 
       }
       
     }
@@ -28,6 +29,10 @@ class App extends Component {
         .catch(err => console.log(err));
     }
 
+    selectItem = (item) => {
+      this.setState({selectedItem: item})
+
+    }
   render(){
     
   return (
@@ -35,9 +40,11 @@ class App extends Component {
       <Header/>
       <Dashboard
       itemArr={this.state.itemArr}
-      getItems={this.getItems}/>
+      getItems={this.getItems}
+      selectItem={this.selectItem}/>
       <Form
-      getItems={this.getItems}/>
+      getItems={this.getItems}
+      selectedItem={this.state.selectedItem}/>
     </div>
   );
   }

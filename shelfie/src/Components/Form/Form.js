@@ -9,9 +9,18 @@ class Form extends Component{
       name: '',
       price: '',
       image: '',
-      editView: true
+      editView: true,
+      selectedId: this.props.selectedItem.product_id
     }
     this.baseState = this.state
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.selectedItem !== this.props.selectedItem){
+      this.setState({editView: !this.state.editView})
+      this.setState({})
+    }
+
   }
 
   addItem = () => {
@@ -20,6 +29,13 @@ class Form extends Component{
       .then(() => this.handleCancel())
       .catch(err => console.log(err))
 
+  }
+
+  editItem = () => {
+    axios.put(`/api/product/${this.state.selectedId}`,
+    {imageUrl: this.state.image, productName: this.state.name, price: this.state.price})
+    .then(() => this.props.getItems())
+    .catch(err => console.log(err))
   }
 
   handleInput = (e) => {
@@ -45,7 +61,7 @@ class Form extends Component{
   render(){
     return(
       <div>
-        Form
+        
         <img src={this.state.image} />
         <input
          name='image'
@@ -68,7 +84,7 @@ class Form extends Component{
         ? (
         <button onClick={this.addItem}>Add to Inventory</button>
         )
-        : (<button>Save Changes</button>)}
+        : (<button onClick={this.editItem}>Save Changes</button>)}
       </div>
     )
   }

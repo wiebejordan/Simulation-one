@@ -16,6 +16,7 @@ render(){
     key={i}
     item={item}
     getItems={this.props.getItems}
+    selectItem={this.props.selectItem}
     />
     ));
     
