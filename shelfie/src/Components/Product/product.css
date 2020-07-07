@@ -1,4 +1,32 @@
- img{
+ .product {
+   height: 130px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+
+ }
+ 
+ .product-flex {
+   background-color: RGB(171, 42, 26);
+   height: 120px;
+   width: 300px;
+   justify-content: center;
+   display: flex;
+   align-items: center;
+   font-size: 10px;
+   box-sizing: border-box;
+  
+ }
+
+ .product-info {
+   display: flex;
+   justify-content: space-between;
+   
+   flex-wrap: wrap;
+ }
+
+ .product img{
   height: 100px;
-  width: 100px;
+  width: 150px;
 }

@@ -15,14 +15,20 @@ class Product extends Component{
 
   render(){
     return(
-      <div>
+      <div className='product'>
+        <div className='product-flex'>
+          <div>
         <img src={this.props.item.image_url}/>
+         </div>
+         <div className='product-info'>
          <p>Name:{this.props.item.product_name}</p>
          <p>Cost:{this.props.item.price}</p>
          <button onClick={this.deleteItem}>Delete</button>
          <Link to={`/edit/${this.props.item.product_id}`}>
          <button >Edit</button>
          </Link>
+         </div>
+         </div>
       </div>
     )
   }
