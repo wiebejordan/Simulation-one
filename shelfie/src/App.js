@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
-import Product from './Components/Product/Product';
 import Form from './Components/Form/Form';
-import Header from './Components/Header/Header';
-import axios from 'axios';
+import {HashRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import routes from './routes';
 
 class App extends Component {
     constructor(props){
@@ -16,36 +16,16 @@ class App extends Component {
       
     }
   
-  
-    componentDidMount(){
-      this.getItems();
-    }
-
-    getItems = () => {
-      axios.get('/api/inventory')
-        .then(res => {
-          this.setState({itemArr: res.data})
-        }) 
-        .catch(err => console.log(err));
-    }
-
-    selectItem = (item) => {
-      this.setState({selectedItem: item})
-      console.log(this.state.selectedItem)
-    }
   render(){
     
   return (
+    <HashRouter>
     <div className="App">
-      <Header/>
-      <Dashboard
-      itemArr={this.state.itemArr}
-      getItems={this.getItems}
-      selectItem={this.selectItem}/>
-      <Form
-      getItems={this.getItems}
-      selectedItem={this.state.selectedItem}/>
+      
+      
+      {routes}
     </div>
+    </HashRouter>
   );
   }
 }

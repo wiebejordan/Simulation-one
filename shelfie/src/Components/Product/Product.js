@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './product.css';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 
 class Product extends Component{
@@ -19,7 +20,9 @@ class Product extends Component{
          <p>Name:{this.props.item.product_name}</p>
          <p>Cost:{this.props.item.price}</p>
          <button onClick={this.deleteItem}>Delete</button>
-         <button onClick={() => this.props.selectItem(this.props.item)}>Edit</button>
+         <Link to={`/edit/${this.props.item.product_id}`}>
+         <button >Edit</button>
+         </Link>
       </div>
     )
   }

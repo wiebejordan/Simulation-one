@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+import Header from '../Header/Header'
+
 
 class Form extends Component{
   constructor(props){
@@ -9,20 +12,45 @@ class Form extends Component{
       name: '',
       price: 0,
       image: '',
+      id: null,
       editView: true,
-      selectedId: this.props.selectedItem.product_id
+      selectedItem: {}
+      
     }
     this.baseState = this.state
   }
 
+  componentWillMount(){
+      if(this.props.match.params.id){
+    axios.get(`/api/product/${this.props.match.params.id}`)
+    .then(res => {
+      this.setState({name: res.data[0].product_name,
+      price: res.data[0].price, image: res.data[0].image_url, id: res.data[0].product_id})
+        console.log(this.state.selectedItem)
+      }) 
+      .catch(err => console.log(err));
+      
+    }
+    
+  }
+
+
   componentDidUpdate(prevProps, prevState){
-    if(prevProps.selectedItem !== this.props.selectedItem){
-      this.setState({editView: !this.state.editView})
-      this.setState({name: this.props.selectedItem.product_name,
-      price: this.props.selectedItem.price,
-      image: this.props.selectedItem.image_url })
+    if(prevProps.match.params.id !== this.props.match.params.id){
+      this.handleCancel();
     }
 
+  }
+
+  getSingleItem = () => {
+   return axios.get(`/api/product/${this.props.match.params.id}`)
+    .then(res => {
+      this.setState({selectedItem: res.data})
+        // console.log(this.state.selectedItem)
+
+    }) 
+    .catch(err => console.log(err));
+    
   }
 
   addItem = () => {
@@ -34,7 +62,7 @@ class Form extends Component{
   }
 
   editItem = () => {
-    axios.put(`/api/product/${this.props.selectedItem.product_id}`,
+    axios.put(`/api/product/${this.state.id}`,
     {imageUrl: this.state.image, productName: this.state.name, price: this.state.price})
     .then(() => this.props.getItems())
     .catch(err => console.log(err))
@@ -54,8 +82,10 @@ class Form extends Component{
   }
 
   render(){
+    
     return(
       <div>
+        <Header/>
         
         <img src={this.state.image} />
         <input
@@ -74,12 +104,19 @@ class Form extends Component{
         value={this.state.price}
         onChange={e => this.handleInput(e)}
         placeholder='Enter Product Price'/>
+        <Link to='/'>
         <button onClick={this.handleCancel}>Cancel</button>
-        {this.state.editView
+        </Link>
+        {this.props.match.params.id
         ? (
-        <button onClick={this.addItem}>Add to Inventory</button>
+          <Link to='/'>
+          <button onClick={this.editItem}>Save Changes</button>
+          </Link>
         )
-        : (<button onClick={this.editItem}>Save Changes</button>)}
+        : (<Link to='/'>  
+        <button onClick={this.addItem}>Add to Inventory</button>
+        </Link>)}
+        
       </div>
     )
   }

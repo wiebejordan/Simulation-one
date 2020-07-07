@@ -21,6 +21,7 @@ massive({
 
 
 app.get('/api/inventory', controller.getItems);
+app.get('/api/product/:id', controller.getSingleItem);
 app.post('/api/product', controller.addItem);
 app.delete('/api/product/:id', controller.deleteItem);
 app.put('/api/product/:id', controller.editItem);

@@ -1,31 +1,57 @@
 import React, {Component} from 'react';
 import Product from '../Product/Product';
 import axios from 'axios';
+import Header from '../Header/Header';
+import Form from '../Form/Form';
+
 
 class Dashboard extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      itemArr: [],
+      selectedItem: {}
+    }
+    
+  }
 
-// deleteItem = () => {
-//   axios.delete(`/api/product/${this.item.product_id}`)
-//     .then (() => this.props.getItems())
-//     .catch(err => console.log(err))
-// }
+
+  componentDidMount(){
+    this.getItems();
+  }
+
+  getItems = () => {
+    axios.get('/api/inventory')
+      .then(res => {
+        this.setState({itemArr: res.data})
+      }) 
+      .catch(err => console.log(err));
+  }
+
+  
+
 
 render(){
-  const itemMap= this.props.itemArr.map((item, i) => (
+  const itemMap= this.state.itemArr.map((item, i) => (
+    
     <Product
     key={i}
     item={item}
-    getItems={this.props.getItems}
-    selectItem={this.props.selectItem}
+    getItems={this.getItems}
+    selectItem={this.selectItem}
+    selectedItem={this.state.selectedItem}
     />
     ));
+
     
     
     return(
       <div>
-        Dashboard
-        {itemMap}
+        <Header/>
         
+       
+        
+        {itemMap}
       </div>
     )
 }
