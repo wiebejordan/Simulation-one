@@ -12,7 +12,7 @@ class Form extends Component{
     this.state= {
       name: '',
       price: 0,
-      image: '',
+      image: 'https://tvseriesfinale.com/wp-content/uploads/2017/07/decker-adult-swim-cancelled-or-renewed.jpg',
       id: null,
       editView: true,
       selectedItem: {}
@@ -87,25 +87,28 @@ class Form extends Component{
     return(
       <div>
         <Header/>
-      <main>
-        <div className='product'>
-        <img className='product-image' src={this.state.image} />
+      <main className='main'>
+        <div className='form-product'>
+        <img className='form-product-image' src={this.state.image} />
+        <p>Product Image URL</p>
         <input
          name='image'
          value={this.state.image}
          onChange={e => this.handleInput(e)}
          placeholder='Enter product image url'/>
+         <p>Produce Name</p>
         <input
          name='name'
          value={this.state.name}
          onChange={e => this.handleInput(e)}
          placeholder='Enter Product Name'/>
-
+        <p>Price</p>
         <input 
         name='price'
         value={this.state.price}
         onChange={e => this.handleInput(e)}
         placeholder='Enter Product Price'/>
+        <div className='buttons'>
         <Link to='/'>
         <button onClick={this.handleCancel}>Cancel</button>
         </Link>
@@ -118,6 +121,7 @@ class Form extends Component{
         : (<Link to='/'>  
         <button onClick={this.addItem}>Add to Inventory</button>
         </Link>)}
+        </div>
         </div>
         </main>
       </div>
