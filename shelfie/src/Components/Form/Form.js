@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Header from '../Header/Header'
+import '../Form/Form.css'
 
 
 class Form extends Component{
@@ -86,8 +87,9 @@ class Form extends Component{
     return(
       <div>
         <Header/>
-        
-        <img src={this.state.image} />
+      <main>
+        <div className='product'>
+        <img className='product-image' src={this.state.image} />
         <input
          name='image'
          value={this.state.image}
@@ -116,7 +118,8 @@ class Form extends Component{
         : (<Link to='/'>  
         <button onClick={this.addItem}>Add to Inventory</button>
         </Link>)}
-        
+        </div>
+        </main>
       </div>
     )
   }

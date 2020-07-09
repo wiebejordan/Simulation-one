@@ -10,12 +10,15 @@ class Header extends Component{
   render(){
     return(
       <div className='header'>
+        <header>SHELFIE</header>
+        <div className='menu'>
         <Link to='/'>
         <button>Dashboard</button>
         </Link>
         <Link to='/add'>
         <button>Add Inventory</button>
         </Link>
+        </div>
       </div>
     )
   }

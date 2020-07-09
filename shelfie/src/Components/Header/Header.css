@@ -1,5 +1,23 @@
 .header {
-  background-color: RGB(171, 42, 26);
+  background-color: #AB2A19;
   height: 50px;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  margin-right: 200px;
+}
+
+.menu button {
+  background-color: #ED6B5A;
+  border: none;
+  border-radius: 5px;
 }
